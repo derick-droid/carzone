@@ -1,4 +1,5 @@
 from distutils.command.upload import upload
+from multiprocessing import Condition
 from django.db import models
 from datetime import datetime
 from ckeditor.fields import RichTextField
@@ -89,9 +90,11 @@ class Cars(models.Model):
     
     car_title = models.CharField(max_length=250)
     state = models.CharField(choices=state_choice, max_length=250)
+    city = models.CharField(max_length=250, default="some string")
     colour = models.CharField(max_length=250)
     model = models.CharField(max_length=250)
     year = models.IntegerField(choices=year_choice)
+    Condition =models.CharField(max_length=250, default="some string")
     price = models.IntegerField()
     description = RichTextField()
     car_photo = models.ImageField(upload_to = 'photos/%y/%m/%d/',    blank = True)
@@ -114,3 +117,5 @@ class Cars(models.Model):
     is_featured = models.BooleanField(default=False)
     created_date = models.DateTimeField(default=datetime.now,blank=True)
     
+    def __str__(self) -> str:
+        return self.car_title
