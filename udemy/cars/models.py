@@ -6,7 +6,7 @@ from ckeditor.fields import RichTextField
 from multiselectfield import MultiSelectField
 
 # Create your models here.
-class Cars(models.Model):
+class Car(models.Model):
     state_choice = (
          ('AL', 'Alabama'),
         ('AK', 'Alaska'),

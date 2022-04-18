@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+
+# from udemy.cars.models import Cars
 from .models import Team
-from cars.models import Cars
+from cars.models import Car
 
 
 def home(request):
     teams  = Team.objects.all()
-    featured_cars = Cars.object.order_by("created_date")
+    featured_cars = Car.object.order_by("-created_date").filter(is_featured = True)
     
     data = {
         'teams' : teams,
